@@ -1,0 +1,106 @@
+[
+  {
+    "section": 1,
+    "label": "financialInformation",
+    "sectionObject": [
+      {
+        "id": "yearlySavings",
+        "name": "yearlySavings",
+        "value": "500000"
+      },
+      {
+        "id": "emergencyFund",
+        "name": "emergencyFund",
+        "value": "100000"
+      },
+      {
+        "id": "dependents",
+        "name": "dependents",
+        "value": "2"
+      },
+      {
+        "id": "monthlyExpense",
+        "name": "monthlyExpense",
+        "value": "40000"
+      }
+    ]
+  },
+  {
+    "section": 2,
+    "label": "demographicProfile",
+    "sectionObject": [
+      {
+        "id": "age",
+        "name": "age",
+        "value": "30"
+      },
+      {
+        "id": "maritalStatus",
+        "name": "maritalStatus",
+        "value": "Married"
+      },
+      {
+        "id": "location",
+        "name": "location",
+        "value": "Mumbai"
+      },
+      {
+        "id": "livingSituation",
+        "name": "livingSituation",
+        "value": "Owned"
+      }
+    ]
+  },
+  {
+    "section": 3,
+    "label": "employmentIncome",
+    "sectionObject": [
+      {
+        "id": "employmentType",
+        "name": "employmentType",
+        "value": "Full-time"
+      },
+      {
+        "id": "industry",
+        "name": "industry",
+        "value": "IT Services"
+      },
+      {
+        "id": "jobLocation",
+        "name": "jobLocation",
+        "value": "Pune"
+      },
+      {
+        "id": "monthlyIncome",
+        "name": "monthlyIncome",
+        "value": "90000"
+      }
+    ]
+  },
+  {
+    "section": 4,
+    "label": "investmentPreferences",
+    "sectionObject": [
+      {
+        "id": "investmentInstruments",
+        "name": "investmentInstruments",
+        "value": "Mutual Funds, Stocks"
+      },
+      {
+        "id": "experience",
+        "name": "experience",
+        "value": "Intermediate"
+      },
+      {
+        "id": "financialGoals",
+        "name": "financialGoals",
+        "value": "Retirement, Education"
+      },
+      {
+        "id": "investmentDuration",
+        "name": "investmentDuration",
+        "value": "Long-term"
+      }
+    ]
+  }
+]
