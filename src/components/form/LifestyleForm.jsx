@@ -14,7 +14,11 @@ function LifestyleForm({ data, onChange }) {
   const getValue = (id) => data.find((d) => d.id === id)?.value || "";
 
   return (
-    <div className="space-y-6 max-w-xl w-full mx-auto px-4 sm:px-6">
+    <div className="pt-5 pb-5 space-y-6 max-w-xl w-full mx-auto px-4 sm:px-6">
+      <div className="italic mb-2 -ml-42">Your Flow</div>
+      <div className="text-left text-[12px]">
+        How you live and spend — nothing too deep.
+      </div>
       {/* Age Slider */}
       <div>
         <Label>Age</Label>

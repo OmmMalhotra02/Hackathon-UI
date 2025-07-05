@@ -19,7 +19,11 @@ function GoalsForm({ data, onChange }) {
   };
 
   return (
-    <div className="space-y-6 max-w-xl w-full mx-auto px-4 sm:px-6">
+    <div className="pt-5 pb-5 space-y-6 max-w-xl w-full mx-auto px-4 sm:px-6">
+      <div className="italic mb-2 -ml-32">Looking Ahead</div>
+      <div className="text-left text-[12px]">
+        What you're aiming for, in your own way.
+      </div>
       <div>
         <Label>Investment Instruments Used</Label>
         <div className="flex flex-col gap-2 mt-2">

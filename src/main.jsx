@@ -9,7 +9,10 @@ import Form from "./Pages/Form.jsx";
 import Home from "./Pages/Home.jsx";
 import Profile from "./Pages/Profile.jsx";
 import SignUp from "./Pages/SignUp.jsx";
-// import FrameWrapper from "./FrameWrapper.jsx";
+import FrameWrapper from "./FrameWrapper.jsx";
+import "keen-slider/keen-slider.min.css";
+import PortfolioStrategy from "./Pages/PortfolioStrategy.jsx";
+
 
 const router = createBrowserRouter([
   {
@@ -44,30 +47,18 @@ const router = createBrowserRouter([
         path: "/signup",
         element: <SignUp />,
       },
+      {
+        path: "/dashboard",
+        element: <PortfolioStrategy />,
+      },
     ],
   },
-  // {
-  //   path: "/",
-  //   element: <App />,
-  // },
-  // {
-  //   path: "/login",
-  //   element: <Login />,
-  // },
-  // {
-  //   path: "/form",
-  //   element: <ProfileForm />,
-  // },
-  // {
-  //   path: "/chat",
-  //   element: <ChatBot />,
-  // },
 ]);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    {/* <FrameWrapper> */}
+    <FrameWrapper>
       <RouterProvider router={router} />
-    {/* </FrameWrapper> */}
+    </FrameWrapper>
   </StrictMode>
 );

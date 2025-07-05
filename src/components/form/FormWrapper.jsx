@@ -4,6 +4,7 @@ import GoalsForm from "./GoalsForm";
 import LifestyleForm from "./LifestyleForm";
 import ProfessionForm from "./ProfessionForm";
 import { Button } from "../ui/button";
+import { Progress } from "../ui/progress";
 
 const initialForm = [
   {
@@ -186,15 +187,21 @@ function FormWrapper() {
       setStep((prev) => prev + 1);
     }
   };
-  
+  const progress = ((step + 1) / sections.length) * 100;
 
   return (
     <div className="text-center max-w-3xl mx-auto px-4 sm:px-6">
-      <h2 className="text-2xl font-semibold mb-4">Personalized Profiling</h2>
-      <p className="text-gray-500 text-sm mb-6">
+      <div className="text-lg font-semibold mb-4 -mt-5">
+        <div className="text-red-600 text-[22px] -ml-35 font-[800]">
+          Pulse Check!
+        </div>
+        <div className="-ml-12">Your Investment Personality</div>
+      </div>
+      {/* <p className="text-gray-500 text-sm">
         Step {step + 1} of {sections.length}
-      </p>
-      {sections[step]}
+      </p> */}
+      <Progress value={progress} className="h-3 mb-8" />
+      <div className="rounded-2xl shadow-2xl/40">{sections[step]}</div>
       <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mt-8">
         {step > 0 && (
           <Button

@@ -32,7 +32,7 @@ export function SignUpForm({ className, ...props }) {
 
       if (res.ok) {
         alert("Signup successful! You can now login.");
-        navigate("/login"); // Navigate to login page after signup
+        navigate("/login");
       } else {
         console.error(data.detail || "Signup failed");
         alert(data.detail || "Signup failed");
@@ -43,7 +43,7 @@ export function SignUpForm({ className, ...props }) {
   };
 
   return (
-    <div className={cn("mt-10 px-4 flex justify-center", className)} {...props}>
+    <div className={cn("my-auto md:mt-10 px-4 flex justify-center", className)} {...props}>
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle className="text-xl sm:text-2xl">

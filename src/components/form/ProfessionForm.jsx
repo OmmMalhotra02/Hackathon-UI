@@ -18,10 +18,14 @@ function ProfessionForm({ data, onChange }) {
   };
 
   return (
-    <div className="space-y-6 w-full max-w-xl mx-auto px-4 sm:px-6">
+    <div className="pt-5 pb-5 space-y-6 w-full max-w-xl mx-auto px-4 sm:px-6">
+      <div className="italic mb-2 -ml-38">Work & You</div>
+      <div className="text-left text-[12px]">
+        A peek at your path — helps us guide better.
+      </div>
       {/* Employment Type */}
       <div>
-        <Label className="mb-2 block">Employment Type</Label>
+        <Label className="mb-3">Employment Type</Label>
         <RadioGroup
           value={getValue("employmentType")}
           onValueChange={(val) => onChange("employmentType", val)}
@@ -44,7 +48,7 @@ function ProfessionForm({ data, onChange }) {
 
       {/* Industry */}
       <div>
-        <Label className="mb-2 block">Industry</Label>
+        <Label className="mb-3">Industry</Label>
         <Select
           value={getValue("industry")}
           onValueChange={(val) => onChange("industry", val)}
@@ -63,7 +67,7 @@ function ProfessionForm({ data, onChange }) {
 
       {/* Job Location */}
       <div>
-        <Label className="mb-2 block">Job Location</Label>
+        <Label className="mb-3">Job Location</Label>
         <Input
           type="text"
           value={getValue("jobLocation")}
@@ -74,7 +78,7 @@ function ProfessionForm({ data, onChange }) {
 
       {/* Monthly Income */}
       <div>
-        <Label className="mb-2 block">Monthly Income ($)</Label>
+        <Label className="mb-3">Monthly Income ($)</Label>
         <Input
           type="number"
           value={getValue("monthlyIncome")}

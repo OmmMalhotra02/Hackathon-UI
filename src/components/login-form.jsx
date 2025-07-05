@@ -66,14 +66,14 @@ export function LoginForm({ className, ...props }) {
   };
 
   return (
-    <div className={cn("mt-10 px-4 flex justify-center", className)} {...props}>
+    <div className={cn("my-auto md:mt-10 md:px-4 flex justify-center", className)} {...props}>
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle className="text-xl sm:text-2xl">
-            Welcome to UBS, please sign in.
+          <CardTitle className="text-2xl sm:text-2xl">
+            Welcome Back to PIE
           </CardTitle>
           <CardDescription>
-            Enter your username & password to login to your account
+            Securely access your intelligent investment journey.
           </CardDescription>
         </CardHeader>
         <CardContent>
