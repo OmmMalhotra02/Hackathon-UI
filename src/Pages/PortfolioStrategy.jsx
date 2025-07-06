@@ -1,4 +1,5 @@
-import { useState } from "react";
+// Dashboard
+import { useState, useEffect } from "react";
 import {
   Card,
   CardContent,
@@ -24,19 +25,14 @@ import {
   ArrowDownRight,
   User,
   Home,
+  ArrowLeft
 } from "lucide-react";
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-} from "recharts";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid } from "recharts";
 
 import { useNavigate } from "react-router-dom";
 import RiskProfileBadge from "../components/RiskProfileBadge";
@@ -47,9 +43,9 @@ const PortfolioStrategy = () => {
   const [selectedPeriod, setSelectedPeriod] = useState("1Y");
   const [selectedMetric, setSelectedMetric] = useState("returns");
   const [selectedChart, setSelectedChart] = useState("performance");
-
+  
   // Sample data for charts
-  const performanceData = [
+  const defaultPerformanceData = [
     { month: "Jan", portfolio: 8.2, cio: 7.8, sp500: 6.5 },
     { month: "Feb", portfolio: 9.1, cio: 8.2, sp500: 7.1 },
     { month: "Mar", portfolio: 12.3, cio: 10.1, sp500: 9.8 },
@@ -64,7 +60,7 @@ const PortfolioStrategy = () => {
     { month: "Dec", portfolio: 19.5, cio: 16.1, sp500: 15.2 },
   ];
 
-  const allocationData = [
+  const defaultAllocationData = [
     { name: "US Equities", value: 35, color: "#3b82f6" },
     { name: "International", value: 20, color: "#10b981" },
     { name: "Bonds", value: 25, color: "#f59e0b" },
@@ -72,7 +68,7 @@ const PortfolioStrategy = () => {
     { name: "Commodities", value: 10, color: "#8b5cf6" },
   ];
 
-  const riskMetrics = [
+  const defaultRiskMetrics = [
     { metric: "Volatility", portfolio: "12.3%", cio: "14.1%", status: "lower" },
     {
       metric: "Sharpe Ratio",
@@ -95,6 +91,22 @@ const PortfolioStrategy = () => {
     sp500: { label: "S&P 500", color: "#f59e0b" },
   };
 
+  const [performanceData, setPerformanceData] = useState(defaultPerformanceData);
+  const [allocationData, setAllocationData] = useState(defaultAllocationData);
+  const [riskMetrics, setRiskMetrics] = useState(defaultRiskMetrics);
+
+  useEffect(()=>{
+    Promise.allSettled([
+      fetch("/api/performance").then((res)=> res.ok ? res.json() : Promise.reject()),
+      fetch("/api/allocation").then((res)=> res.ok ? res.json() : Promise.reject()),
+      fetch("/api/riskmetrics").then((res)=> res.ok ? res.json() : Promise.reject()),
+    ]).then(([perf, alloc, risk])=>{
+      if(perf.status === 'fulfilled') setPerformanceData(perf.value);
+      if(alloc.status === 'fulfilled') setAllocationData(alloc.value);
+      if(risk.status === 'fulfilled') setRiskMetrics(risk.value);
+    })
+  },[])
+
   const formattedData = allocationData.map((item) => ({
     id: item.name,
     label: item.name,
@@ -104,7 +116,18 @@ const PortfolioStrategy = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-      <RiskProfileBadge />
+      <div className="flex justify-between items-center">
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => navigate(-1)}
+          className="flex space-x-2"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          <span>Back</span>
+        </Button>
+        <RiskProfileBadge />
+      </div>
       {/* <div className="">
         <Button variant="outline" size="sm">
           <User className="h-4 w-4 mr-2" />

@@ -12,6 +12,8 @@ import SignUp from "./Pages/SignUp.jsx";
 import FrameWrapper from "./FrameWrapper.jsx";
 import "keen-slider/keen-slider.min.css";
 import PortfolioStrategy from "./Pages/PortfolioStrategy.jsx";
+import HowItWorks from "./Pages/HowItWorks.jsx";
+import RiskProfile from "./Pages/RiskProfile.jsx";
 
 
 const router = createBrowserRouter([
@@ -50,6 +52,14 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: <PortfolioStrategy />,
+      },
+      {
+        path: "/howitworks",
+        element: <HowItWorks />,
+      },
+      {
+        path: "/riskprofile",
+        element: <RiskProfile />,
       },
     ],
   },

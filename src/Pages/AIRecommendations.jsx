@@ -17,79 +17,62 @@ import {
 } from "lucide-react";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
+import { userProfile, getRiskProfile } from "@/components/RiskProfileBadge";
+import { useEffect, useState } from "react";
 
 export const AIRecommendations = () => {
   // Generate recommendations based on user profile
-  const userProfile = localStorage.getItem("profileForm")
-  const getRecommendations = () => {
-    const riskScore = userProfile?.risk_tolerance || 5;
-    const experience = userProfile?.experience || "intermediate";
-    const timeline = userProfile?.timeline || "long";
-
-    const baseRecommendations = [
-      {
-        id: 1,
-        title: "Diversified Index Fund Portfolio",
-        description:
-          "Low-cost, broad market exposure with automatic rebalancing",
-        riskLevel: "Low",
-        expectedReturn: "7-9%",
-        icon: Shield,
-        color: "text-green-600",
-        bgColor: "bg-green-50",
-        priority: "high",
-      },
-      {
-        id: 2,
-        title: "Target-Date Retirement Fund",
-        description: "Automatically adjusts allocation based on your timeline",
-        riskLevel: "Medium",
-        expectedReturn: "6-8%",
-        icon: TrendingUp,
-        color: "text-blue-600",
-        bgColor: "bg-blue-50",
-        priority: "high",
-      },
-      {
-        id: 3,
-        title: "ESG Investment Strategy",
-        description:
-          "Sustainable investing aligned with environmental and social values",
-        riskLevel: "Medium",
-        expectedReturn: "6-10%",
-        icon: Star,
-        color: "text-purple-600",
-        bgColor: "bg-purple-50",
-        priority: "medium",
-      },
-      {
-        id: 4,
-        title: "Growth Stock Portfolio",
-        description: "Focus on companies with high growth potential",
-        riskLevel: "High",
-        expectedReturn: "10-15%",
-        icon: Zap,
-        color: "text-orange-600",
-        bgColor: "bg-orange-50",
-        priority: riskScore > 6 ? "high" : "low",
-      },
-    ];
-
-    // Filter and sort based on user profile
-    return baseRecommendations
-      .filter((rec) => {
-        if (riskScore <= 3 && rec.riskLevel === "High") return false;
-        if (riskScore >= 8 && rec.riskLevel === "Low") return false;
-        return true;
-      })
-      .sort((a, b) => {
-        const priorityOrder = { high: 3, medium: 2, low: 1 };
-        return priorityOrder[b.priority] - priorityOrder[a.priority];
-      })
-      .slice(0, 3);
-  };
-
-  const recommendations = getRecommendations();
+  const riskScore = userProfile?.risk_tolerance || 5;
+  const defaultRecommendations = [
+    {
+      id: 1,
+      title: "Diversified Index Fund Portfolio",
+      description: "Low-cost, broad market exposure with automatic rebalancing",
+      riskLevel: "Low",
+      expectedReturn: "7-9%",
+      icon: Shield,
+      color: "text-green-600",
+      bgColor: "bg-green-50",
+      priority: "high",
+    },
+    {
+      id: 2,
+      title: "Target-Date Retirement Fund",
+      description: "Automatically adjusts allocation based on your timeline",
+      riskLevel: "Medium",
+      expectedReturn: "6-8%",
+      icon: TrendingUp,
+      color: "text-blue-600",
+      bgColor: "bg-blue-50",
+      priority: "high",
+    },
+    {
+      id: 3,
+      title: "ESG Investment Strategy",
+      description:
+        "Sustainable investing aligned with environmental and social values",
+      riskLevel: "Medium",
+      expectedReturn: "6-10%",
+      icon: Star,
+      color: "text-purple-600",
+      bgColor: "bg-purple-50",
+      priority: "medium",
+    },
+    {
+      id: 4,
+      title: "Growth Stock Portfolio",
+      description: "Focus on companies with high growth potential",
+      riskLevel: "High",
+      expectedReturn: "10-15%",
+      icon: Zap,
+      color: "text-orange-600",
+      bgColor: "bg-orange-50",
+      priority: riskScore > 6 ? "high" : "low",
+    },
+  ];
+  const [recommendations, setRecommendations] = useState(defaultRecommendations);
+    
+    
 
   const [sliderRef] = useKeenSlider({
     loop: true,
@@ -102,6 +85,49 @@ export const AIRecommendations = () => {
     mode: "free",
     autoplay: true,
   });
+
+  useEffect(()=> {
+    fetch("/api/recommendations")
+      .then((res) => {
+        if (
+          !res.ok ||
+          !res.headers.get("content-type")?.includes("application/json")
+        ) {
+          throw new Error("Invalid response");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        const filtered = data
+          .filter((rec) => {
+            if (riskScore <= 3 && rec.riskLevel === "High") return false;
+            if (riskScore >= 8 && rec.riskLevel === "Low") return false;
+            return true;
+          })
+          .sort((a, b) => {
+            const priorityOrder = { high: 3, medium: 2, low: 1 };
+            return priorityOrder[b.priority] - priorityOrder[a.priority];
+          })
+          .slice(0, 3);
+        setRecommendations(filtered);
+      })
+      .catch((err) => {
+        console.warn("Using default recommendations due to error:", err);
+        const riskScore = userProfile?.risk_tolerance || 5;
+        const filtered = defaultRecommendations
+          .filter((rec) => {
+            if (riskScore <= 3 && rec.riskLevel === "High") return false;
+            if (riskScore >= 8 && rec.riskLevel === "Low") return false;
+            return true;
+          })
+          .sort((a, b) => {
+            const priorityOrder = { high: 3, medium: 2, low: 1 };
+            return priorityOrder[b.priority] - priorityOrder[a.priority];
+          })
+          .slice(0, 3);
+        setRecommendations(filtered);
+      });
+  },[])
 
   return (
     <div className="mb-8">
@@ -121,10 +147,12 @@ export const AIRecommendations = () => {
       >
         Powered by AI
       </Badge> */}
-
+      <div className="animate-slide-left-once">
+        <ArrowRight className="h-4 w-4 ml-auto" />
+      </div>
       <div className="keen-slider mb-10" ref={sliderRef}>
         {/* Slide 1 */}
-        <div className="keen-slider__slide number-slide1 flex flex-col items-center justify-center bg-gradient-to-r from-red-50 to-red-100 p-6 rounded-xl shadow">
+        <div className="keen-slider__slide animate-slide-left-once number-slide1 flex flex-col items-center justify-center bg-gradient-to-r from-red-50 to-red-100 p-6 rounded-xl shadow">
           <img
             src="/src/assets/cio1.avif"
             className="w-64 h-40 object-cover rounded-md"
@@ -148,7 +176,7 @@ export const AIRecommendations = () => {
             Projected Growth Path
           </h3>
           <p className="text-sm text-gray-600 text-center mt-2">
-            Here’s how your portfolio may grow under current market assumptions.
+            Here's how your portfolio may grow under current market assumptions.
           </p>
         </div>
 

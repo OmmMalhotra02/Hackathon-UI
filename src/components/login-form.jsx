@@ -51,7 +51,7 @@ export function LoginForm({ className, ...props }) {
           lastKYC && now - lastKYC > 2 * 365 * 24 * 60 * 60 * 1000;
 
         if (!profile.has_completed_kyc || needsRenewal) {
-          navigate("/form");
+          navigate("/howitworks");
         } else if (!profile.has_completed_chat) {
           navigate("/chat");
         } else {

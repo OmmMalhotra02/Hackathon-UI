@@ -8,7 +8,7 @@ export default function FrameWrapper({ children }) {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-5 bg-black rounded-b-xl z-20" />
 
         {/* Actual app content */}
-        <div className="absolute inset-0 pt-6 pb-4 h-full overflow-y-auto px-2">
+        <div className="absolute inset-0 pt-6 pb-4 h-full overflow-y-auto px-2 md:px-3">
           {children}
         </div>
       </div>

@@ -10,16 +10,6 @@ import {
 import { Progress } from "@/components/ui/progress";
 import RiskProfileBadge, {getRiskProfile, userProfile} from "../components/RiskProfileBadge"
 import { useNavigate } from "react-router-dom";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  Tooltip,
-  ResponsiveContainer,
-  CartesianGrid,
-} from "recharts";
 import {
   TrendingUp,
   Shield,
@@ -29,15 +19,6 @@ import {
   DollarSign,
 } from "lucide-react";
 import { AIRecommendations } from "./AIRecommendations";
-
-const data = [
-  { name: "Jan", value: 2000 },
-  { name: "Feb", value: 2600 },
-  { name: "Mar", value: 2800 },
-  { name: "Apr", value: 3200 },
-  { name: "May", value: 4000 },
-  { name: "Jun", value: 4500 },
-];
 
 // export default function Home() {
 //   const navigate = useNavigate();

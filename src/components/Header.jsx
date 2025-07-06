@@ -12,9 +12,9 @@ export default function Header() {
 
   const navigation = [
     { name: "Home", href: "/home", icon: Home },
-    { name: "AI Onboarding", href: "/onboarding", icon: Bot },
+    { name: "AI Onboarding", href: "/chat", icon: Bot },
     { name: "Dashboard", href: "/dashboard", icon: BarChart3 },
-    { name: "Risk Profile", href: "/risk-profile", icon: Shield },
+    { name: "Risk Profile", href: "/riskprofile", icon: Shield },
   ];
 
   useEffect(() => {
