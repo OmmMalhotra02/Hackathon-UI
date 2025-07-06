@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from './Pages/Login.jsx';
-import { ChatBot } from './Pages/ChatBot.jsx';
+import ChatBot from './Pages/ChatBot.jsx';
 import Layout from "./layout.jsx";
 import Form from "./Pages/Form.jsx";
 import Home from "./Pages/Home.jsx";

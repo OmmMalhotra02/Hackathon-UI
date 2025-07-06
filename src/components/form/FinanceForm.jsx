@@ -18,9 +18,11 @@ function FinanceForm({ data, onChange }) {
   };
 
   return (
-    <div className="w-full pt-5 pb-5 px-4 md:px-0 max-w-3xl mx-auto space-y-8">
+    <div className="w-full pt-5 pb-5 px-4 sm:max-w-xl sm:px-6 mx-auto space-y-8">
       {/* Field Group Template */}
-      <div className="italic mb-2 -ml-13">Let's Start With the Basics</div>
+      <div className="italic mb-2 -ml-13 sm:flex sm:ml-0">
+        Let's Start With the Basics
+      </div>
       <div className="text-left text-[12px]">
         Your current money vibe — just to get a feel.
       </div>

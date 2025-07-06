@@ -105,7 +105,7 @@ const RiskProfile = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center sm:mt-5 mb-2">
         <Button
           variant="ghost"
           size="sm"
@@ -115,7 +115,9 @@ const RiskProfile = () => {
           <ArrowLeft className="h-4 w-4" />
           <span>Back</span>
         </Button>
-            <RiskProfileBadge />
+        <div className="sm:mr-8">
+          <RiskProfileBadge />
+        </div>
       </div>
 
       <div className="container mx-auto px-4 py-8">

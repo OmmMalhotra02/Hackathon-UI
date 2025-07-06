@@ -19,7 +19,7 @@ function ProfessionForm({ data, onChange }) {
 
   return (
     <div className="pt-5 pb-5 space-y-6 w-full max-w-xl mx-auto px-4 sm:px-6">
-      <div className="italic mb-2 -ml-38">Work & You</div>
+      <div className="italic mb-2 -ml-38 sm:flex sm:ml-0">Work & You</div>
       <div className="text-left text-[12px]">
         A peek at your path — helps us guide better.
       </div>

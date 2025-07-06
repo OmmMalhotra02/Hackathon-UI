@@ -15,7 +15,7 @@ function LifestyleForm({ data, onChange }) {
 
   return (
     <div className="pt-5 pb-5 space-y-6 max-w-xl w-full mx-auto px-4 sm:px-6">
-      <div className="italic mb-2 -ml-42">Your Flow</div>
+      <div className="italic mb-2 -ml-42 sm:flex sm:ml-0">Your Flow</div>
       <div className="text-left text-[12px]">
         How you live and spend — nothing too deep.
       </div>

@@ -116,7 +116,7 @@ const PortfolioStrategy = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center sm:mt-5 ">
         <Button
           variant="ghost"
           size="sm"
@@ -126,7 +126,9 @@ const PortfolioStrategy = () => {
           <ArrowLeft className="h-4 w-4" />
           <span>Back</span>
         </Button>
-        <RiskProfileBadge />
+        <div className="sm:mr-8">
+          <RiskProfileBadge />
+        </div>
       </div>
       {/* <div className="">
         <Button variant="outline" size="sm">
@@ -134,7 +136,7 @@ const PortfolioStrategy = () => {
           Profile
         </Button>
       </div> */}
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8 mb-2">
         {/* Performance Overview */}
         <div className="mb-8">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
@@ -148,7 +150,7 @@ const PortfolioStrategy = () => {
             </div>
             <div className="flex items-center space-x-4 mt-4 sm:mt-0">
               <Select value={selectedPeriod} onValueChange={setSelectedPeriod}>
-                <SelectTrigger className="w-32">
+                <SelectTrigger className="w-32 sm:mr-8 border-red-700">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -243,7 +245,7 @@ const PortfolioStrategy = () => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <ChartContainer config={chartConfig} className="h-80 w-80 -ml-14">
+              <ChartContainer config={chartConfig} className="h-80 w-80 -ml-14 sm:w-auto sm:mx-auto sm:max-h-min">
                 <LineChart data={performanceData}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="month" />
@@ -357,10 +359,10 @@ const PortfolioStrategy = () => {
                     key={index}
                     className="flex items-center justify-between p-4 bg-gray-50 rounded-lg"
                   >
-                    <div className="flex-1">
+                    <div className="flex-1 sm:ml-10">
                       <h4 className="font-medium">{metric.metric}</h4>
                     </div>
-                    <div className="flex items-center space-x-8">
+                    <div className="flex items-center space-x-8 sm:mr-15">
                       <div className="text-center">
                         <p className="text-sm text-gray-600">Your Portfolio</p>
                         <p className="font-bold text-blue-600">

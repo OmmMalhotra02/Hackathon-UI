@@ -1,9 +1,7 @@
-import React from "react";
-
-function Footer() {
+  function Footer() {
   return (
-    <footer className="w-full border-t border-black px-2 md:px-10 text-sm bg-white">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-2 md:space-y-0">
+    <footer className="w-full border-t border-black px-2 md:px-10 text-sm bg-white sm:mb-3">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-2 md:space-y-0 sm:mt-3">
         <p className="text-center md:text-left">
           Wealth management services in the United States are provided by UBS
           Financial Services Inc.

@@ -191,11 +191,13 @@ function FormWrapper() {
 
   return (
     <div className="text-center max-w-3xl mx-auto px-4 sm:px-6">
-      <div className="text-lg font-semibold mb-4 -mt-5">
-        <div className="text-red-600 text-[22px] -ml-35 font-[800]">
+      <div className="text-lg font-semibold mb-4 -mt-5 sm:mb-10">
+        <div className="text-red-600 text-[22px] -ml-35 font-[800] sm:flex sm:ml-0 ">
           Pulse Check!
         </div>
-        <div className="-ml-12">Your Investment Personality</div>
+        <div className="-ml-12 sm:flex sm:ml-0">
+          Your Investment Personality
+        </div>
       </div>
       {/* <p className="text-gray-500 text-sm">
         Step {step + 1} of {sections.length}

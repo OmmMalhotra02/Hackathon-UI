@@ -127,7 +127,9 @@ export default function Home () {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       <div className="container mx-auto px-4 py-8">
         {/* Welcome Section */}
-        <RiskProfileBadge/>
+        <div className="md:flex -mt-4 mb-3">
+          <RiskProfileBadge/>
+        </div>
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
             Welcome to Your Investment Dashboard

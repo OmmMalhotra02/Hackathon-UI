@@ -84,6 +84,14 @@ export const AIRecommendations = () => {
     drag: true,
     mode: "free",
     autoplay: true,
+    breakpoints: {
+      "(min-width: 640px)": {
+        slides: {
+          perView: 2,
+          spacing: 15,
+        },
+      },
+    },
   });
 
   useEffect(()=> {
@@ -148,14 +156,14 @@ export const AIRecommendations = () => {
         Powered by AI
       </Badge> */}
       <div className="animate-slide-left-once">
-        <ArrowRight className="h-4 w-4 ml-auto" />
+        <ArrowRight className="h-4 w-4 ml-auto md:h-10 md:w-10" />
       </div>
       <div className="keen-slider mb-10" ref={sliderRef}>
         {/* Slide 1 */}
         <div className="keen-slider__slide animate-slide-left-once number-slide1 flex flex-col items-center justify-center bg-gradient-to-r from-red-50 to-red-100 p-6 rounded-xl shadow">
           <img
             src="/src/assets/cio1.avif"
-            className="w-64 h-40 object-cover rounded-md"
+            className="w-64 h-40 object-cover rounded-md md:w-120 md:h-60"
           />
           <h3 className="text-xl font-bold mt-4 text-red-700">
             CIO Benchmarked Strategy
