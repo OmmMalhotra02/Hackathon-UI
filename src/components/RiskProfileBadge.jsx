@@ -1,5 +1,12 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { Badge } from "./ui/badge";
+import { Info } from "lucide-react"; // Optional icon library like lucide-react
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const defaultProfile = {
   risk_tolerance: 5,
@@ -13,26 +20,34 @@ const defaultProfile = {
 let exportUserProfile = defaultProfile;
 
 export const getRiskProfile = (riskScore) => {
-  // const riskScore = userProfile?.risk_tolerance || 5;
-  if (riskScore <= 3)
+  if (riskScore == -1)
+    return {
+      level: "Not Assessed",
+      color: "bg-gray-100 text-gray-800",
+      score: "N/A",
+    };
+  if (riskScore>=0 && riskScore <= 3)
     return {
       level: "Conservative",
-      color: "bg-green-100 text-green-800",
+      color: "from-green-200 to-green-400 text-green-900",
+      icon: "🛡️",
       description:
         "You prefer stable investments with lower risk and steady returns",
       allocation: { stocks: 30, bonds: 60, alternatives: 10 },
     };
-  if (riskScore <= 7)
+  if (riskScore >= 3 && riskScore <= 7)
     return {
       level: "Moderate",
-      color: "bg-yellow-100 text-yellow-800",
+      color: "from-yellow-200 to-yellow-400 text-yellow-900",
+      icon: "⚖️",
       description:
         "You balance risk and return with a mix of growth and stability",
       allocation: { stocks: 60, bonds: 30, alternatives: 10 },
     };
   return {
     level: "Aggressive",
-    color: "bg-red-100 text-red-800",
+    color: "from-red-200 to-red-400 text-red-900",
+    icon: "🚀",
     description:
       "You seek higher returns and are comfortable with market volatility",
     allocation: { stocks: 80, bonds: 15, alternatives: 5 },
@@ -40,10 +55,9 @@ export const getRiskProfile = (riskScore) => {
 };
 
 function RiskProfileBadge() {
-  // const riskProfile = getRiskProfile();
   const [riskProfile, setRiskProfile] = useState(null);
 
-  useEffect(()=>{
+  useEffect(() => {
     fetch("/api/user/profile")
       .then((res) => {
         if (
@@ -63,14 +77,33 @@ function RiskProfileBadge() {
         exportUserProfile = defaultProfile;
         setRiskProfile(getRiskProfile(defaultProfile.risk_tolerance));
       });
-  },[])
+  }, []);
+
   if (!riskProfile) return null;
+
   return (
-    <div>
-      <Badge variant="outline" className={riskProfile.color}>
-        {riskProfile.level} Investor
-      </Badge>
-    </div>
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <div className="mt-2 mb-2">
+            <div
+              className={`inline-flex items-center gap-2 px-2 py-2 rounded-full bg-gradient-to-r ${riskProfile.color} shadow-md transition-transform hover:scale-105 cursor-pointer`}
+            >
+              <span className="text-lg">{riskProfile.icon}</span>
+              <span className="font-semibold text-sm tracking-wide">
+                {riskProfile.level} Investor
+              </span>
+              <Info size={16} className="text-muted-foreground" />
+            </div>
+          </div>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p className="text-sm text-muted-foreground w-64">
+            {riskProfile.description}
+          </p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   );
 }
 

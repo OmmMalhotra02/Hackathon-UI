@@ -3,6 +3,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { BarChart3, Bot, Home, Shield, User, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import ProfileMenu from "@/components/ProfileMenu";
 
 export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -32,9 +33,9 @@ export default function Header() {
 
   return (
     <div className="sticky top-0 z-40 border-b border-black bg-white">
-      <header className="container mx-auto flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8">
+      <header className="container mx-auto flex h-20 items-center px-5 sm:px-6 lg:px-8">
         {/* Mobile Header */}
-        <div className="lg:hidden flex items-center gap-4 w-full justify-between relative z-50">
+        <div className="lg:hidden flex items-center gap-4 w-full relative z-50">
           <Button
             variant="ghost"
             size="sm"
@@ -47,11 +48,18 @@ export default function Header() {
               <Menu className="h-5 w-5" />
             )}
           </Button>
-          <img
-            src="/src/assets/UBS-logo.png"
-            alt="UBS Logo"
-            className="mr-10 w-20 md:w-16"
-          />
+          <div className="flex items-center justify-center">
+            <div className="flex flex-col items-center">
+              <img
+                src="/src/assets/UBS-logo.png"
+                alt="UBS Logo"
+                className="w-16 md:w-24"
+              />
+              <span className="font-semibold text-[15px] ml-3 text-center">
+                Personal Insight Engine
+              </span>
+            </div>
+          </div>
 
           {mobileMenuOpen && (
             <div className="absolute top-15 -left-5 w-50px bg-white z-50 shadow-lg">
@@ -75,6 +83,7 @@ export default function Header() {
                     </Link>
                   );
                 })}
+                {/* <Profile/> */}
               </div>
             </div>
           )}
@@ -112,15 +121,16 @@ export default function Header() {
         </div>
 
         {/* Auth Buttons */}
-        <div className="flex gap-2 items-center ml-auto">
+        <div className="flex gap-2 items-center justify-between ml-auto">
           {isLoggedIn ? (
-            <Button
-              variant="destructive"
-              onClick={handleLogout}
-              className="w-18 h-9"
-            >
-              Sign Out
-            </Button>
+            // <Button
+            //   variant="destructive"
+            //   onClick={handleLogout}
+            //   className="w-18 h-9"
+            // >
+            //   Sign Out
+            // </Button>
+            <ProfileMenu />
           ) : (
             <>
               <Button
